@@ -29,8 +29,8 @@ export class AuthService {
 
   signUpWithEmail(email: string, password: string) {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
-      .then((user) => {
-        this.userDetails = user
+      .then((userCredentials) => {
+        this.userDetails = userCredentials.user;
       })
       .catch(error => {
         console.log(error)
@@ -40,8 +40,8 @@ export class AuthService {
 
   loginWithEmail(email: string, password: string) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
-      .then((user) => {
-        this.userDetails = user;
+      .then((userCredentials) => {
+        this.userDetails = userCredentials.user;
         this.router.navigate(['/'])
       })
       .catch(error => {
